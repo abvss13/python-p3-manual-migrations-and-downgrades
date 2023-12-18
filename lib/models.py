@@ -1,16 +1,11 @@
+# models.py
 import os
 import sys
+from datetime import datetime
+from sqlalchemy import create_engine, Column, Integer, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
 
 sys.path.append(os.getcwd())
-
-
-from datetime import datetime
-
-from sqlalchemy import create_engine, desc
-from sqlalchemy import (CheckConstraint, UniqueConstraint,
-    Column, DateTime, Integer, String)
-
-from sqlalchemy.ext.declarative import declarative_base
 
 engine = create_engine('sqlite:///migrations_test.db')
 
@@ -25,6 +20,8 @@ class Student(Base):
     grade = Column(Integer())
     birthday = Column(DateTime())
     enrolled_date = Column(DateTime(), default=datetime.now())
+
+    new_column = Column(String())  # Replace String() with the appropriate data type
 
     def __repr__(self):
         return f"Student {self.id}: " \
